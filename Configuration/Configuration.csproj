@@ -44,5 +44,27 @@
     <Compile Include="DependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{259e71ba-205c-4848-b21a-37796efea46c}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodOrderingSite.BLL.Interfaces\FoodOrderingSite.BLL.Interfaces.csproj">
+      <Project>{ce064683-33b2-472b-8b7b-0cccc09e09d3}</Project>
+      <Name>FoodOrderingSite.BLL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodOrderingSite.BLL\FoodOrderingSite.BLL.csproj">
+      <Project>{07590c96-2775-4e39-bd1f-b4876fb6b816}</Project>
+      <Name>FoodOrderingSite.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodOrderingSite.DAL.Interfaces\FoodOrderingSite.DAL.Interfaces.csproj">
+      <Project>{9dc44649-fcd5-4083-b60d-e854fb31a46f}</Project>
+      <Name>FoodOrderingSite.DAL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodOrderingSite.DAL\FoodOrderingSite.DAL.csproj">
+      <Project>{428cd653-777f-4a55-b4eb-5199e6644ac9}</Project>
+      <Name>FoodOrderingSite.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

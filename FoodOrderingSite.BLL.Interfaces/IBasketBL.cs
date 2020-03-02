@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace FoodOrderingSite.BLL.Interfaces
 {
-    public interface IClientBL
+    public interface IBasketBL
     {
-        bool Add(Client client);
+        bool Add(Basket basket);
         bool DeleteById(int id);
         bool UpdateById(int id);
-        IEnumerable<Client> GetAll();
     }
 }

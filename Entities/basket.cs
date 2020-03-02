@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class Basket
+    public class Basket
     {
         public int Id { get; set; }
-        public int Client_Id { get; set; }
+        public int ClientId { get; set; }
         public List<Product> Products { get; set; }
     }
 }

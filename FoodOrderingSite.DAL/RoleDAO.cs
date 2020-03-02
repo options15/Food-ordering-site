@@ -1,5 +1,4 @@
 ﻿using Entities;
-using FoodOrderingSite.BLL.Interfaces;
 using FoodOrderingSite.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,35 +6,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodOrderingSite.BLL
+namespace FoodOrderingSite.DAL
 {
-    public class RoleBL : IRoleBL
+    public class RoleDAO : IRoleDAO
     {
-        private readonly IRoleDAO roleDAO;
-
-        public RoleBL(IRoleDAO roleDAO)
-        {
-            this.roleDAO = roleDAO;
-        }
-
         public bool Add(Role role)
         {
-            return roleDAO.Add(role);
+            throw new NotImplementedException();
         }
 
         public bool DeleteById(int id)
         {
-            return roleDAO.DeleteById(id);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Order> GetAll()
         {
-            return roleDAO.GetAll();
+            throw new NotImplementedException();
         }
 
         public bool UpdateById(int id)
         {
-            return roleDAO.UpdateById(id);
+            throw new NotImplementedException();
         }
     }
 }

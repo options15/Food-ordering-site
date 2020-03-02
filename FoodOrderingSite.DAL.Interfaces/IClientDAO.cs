@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodOrderingSite.BLL.Interfaces
+namespace FoodOrderingSite.DAL.Interfaces
 {
-    public interface IClientBL
+    public interface IClientDAO
     {
         bool Add(Client client);
         bool DeleteById(int id);

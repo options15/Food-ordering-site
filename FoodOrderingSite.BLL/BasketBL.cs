@@ -9,33 +9,26 @@ using System.Threading.Tasks;
 
 namespace FoodOrderingSite.BLL
 {
-    public class RoleBL : IRoleBL
+    public class BasketBL : IBasketBL
     {
-        private readonly IRoleDAO roleDAO;
-
-        public RoleBL(IRoleDAO roleDAO)
+        private readonly IBasketDAO basketDAO;
+        public BasketBL(IBasketDAO basketDAO)
         {
-            this.roleDAO = roleDAO;
+            this.basketDAO = basketDAO;
         }
-
-        public bool Add(Role role)
+        public bool Add(Basket basket)
         {
-            return roleDAO.Add(role);
+            return basketDAO.Add(basket);
         }
 
         public bool DeleteById(int id)
         {
-            return roleDAO.DeleteById(id);
-        }
-
-        public IEnumerable<Order> GetAll()
-        {
-            return roleDAO.GetAll();
+            return basketDAO.DeleteById(id);
         }
 
         public bool UpdateById(int id)
         {
-            return roleDAO.UpdateById(id);
+            return basketDAO.UpdateById(id);
         }
     }
 }

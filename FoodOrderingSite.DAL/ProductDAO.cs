@@ -1,5 +1,4 @@
 ﻿using Entities;
-using FoodOrderingSite.BLL.Interfaces;
 using FoodOrderingSite.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,40 +6,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodOrderingSite.BLL
+namespace FoodOrderingSite.DAL
 {
-    public class ProductBL : IProductBL
+    public class ProductDAO : IProductDAO
     {
-        private readonly IProductDAO productDAO;
-
-        public ProductBL(IProductDAO productDAO)
-        {
-            this.productDAO = productDAO;
-        }
-
         public bool Add(Product product)
         {
-            return productDAO.Add(product);
+            throw new NotImplementedException();
         }
 
         public bool DeleteById(int id)
         {
-            return productDAO.DeleteById(id);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Order> GetAll()
         {
-            return productDAO.GetAll();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Order> GetByCategory()
         {
-            return productDAO.GetByCategory();
+            throw new NotImplementedException();
         }
 
         public bool UpdateById(int id)
         {
-            return productDAO.UpdateById(id);
+            throw new NotImplementedException();
         }
     }
 }

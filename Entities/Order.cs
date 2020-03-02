@@ -9,8 +9,8 @@ namespace Entities
     public class Order
     {
         public int Id { get; set; }
-        public int Client_Id { get; set; }
-        public string Catehory { get; set; }
+        public int ClientId { get; set; }
+        public string Status { get; set; }
         public List<Product> Products { get; set; }
     }
 }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBasketBL.cs" />
     <Compile Include="IRoleBL.cs" />
     <Compile Include="IProductBL.cs" />
     <Compile Include="IClientBL.cs" />

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodOrderingSite.BLL.Interfaces
+namespace FoodOrderingSite.DAL.Interfaces
 {
-    public interface IClientBL
+    public interface IRoleDAO
     {
-        bool Add(Client client);
+        bool Add(Role role);
         bool DeleteById(int id);
         bool UpdateById(int id);
-        IEnumerable<Client> GetAll();
+        IEnumerable<Order> GetAll();
     }
 }

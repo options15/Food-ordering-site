@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasketBL.cs" />
     <Compile Include="ClientBL.cs" />
     <Compile Include="OrderBL.cs" />
     <Compile Include="ProductBL.cs" />
@@ -55,6 +56,10 @@
     <ProjectReference Include="..\FoodOrderingSite.BLL.Interfaces\FoodOrderingSite.BLL.Interfaces.csproj">
       <Project>{ce064683-33b2-472b-8b7b-0cccc09e09d3}</Project>
       <Name>FoodOrderingSite.BLL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodOrderingSite.DAL.Interfaces\FoodOrderingSite.DAL.Interfaces.csproj">
+      <Project>{9DC44649-FCD5-4083-B60D-E854FB31A46F}</Project>
+      <Name>FoodOrderingSite.DAL.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
