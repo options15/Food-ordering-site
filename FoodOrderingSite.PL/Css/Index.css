@@ -1,0 +1,23 @@
+﻿.category {
+    margin-top:15px;
+    width:100%;
+}
+.product {
+    width:50%;
+    padding:10px; 
+    background-color:aquamarine;
+    float: left;
+
+}
+.product_content {
+    text-align: center;
+    background-color: orange;
+    border: solid 2px #141414;
+    border-radius: 8px 8px;
+    height: 300px;
+}
+.product_img{
+    width:200px;
+    height:200px;
+    text-align:center;
+}

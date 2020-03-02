@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    <script src="~/Scripts/bootstrap.min.js" defer></script>
+    <script src="~/Scripts/jquery-3.0.0.min.js" defer></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar navbar-dark bg-primary">
+        <div>
+            <text>Много Вкусно быстро</text>
+        </div>
+        <div>
+            <button class="btn btn-success">Войти</button>
+            <button class="btn btn-success">Корзина</button>
+        </div>
+    </header>
+    <!-- Header -->
+    <div style="background-image: url('../Content/img/susi_pizza.jpg');"
+">
+    @RenderBody()
+    </div>
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-primary text-white">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright: options.max@mail.ru
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+</body>
+</html>
