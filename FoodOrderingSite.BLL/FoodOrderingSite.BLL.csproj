@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasketBL.cs" />
-    <Compile Include="ClientBL.cs" />
+    <Compile Include="UserBL.cs" />
     <Compile Include="OrderBL.cs" />
     <Compile Include="ProductBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

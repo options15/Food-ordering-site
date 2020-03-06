@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBasketDAO.cs" />
-    <Compile Include="IClientDAO.cs" />
+    <Compile Include="IUserDAO.cs" />
     <Compile Include="IOrderDAO.cs" />
     <Compile Include="IProductDAO.cs" />
     <Compile Include="IRoleDAO.cs" />

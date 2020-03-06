@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace FoodOrderingSite.DAL.Interfaces
 {
-    public interface IClientDAO
+    public interface IUserDAO
     {
-        bool Add(Client client);
+        bool Add(User client);
         bool DeleteById(int id);
         bool UpdateById(int id);
-        IEnumerable<Client> GetAll();
+        IEnumerable<User> GetAll();
+        IEnumerable<string> GetRolesForUser(string login);
+        User GetByLogin(string login);
     }
 }

@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace FoodOrderingSite.BLL.Interfaces
 {
-    public interface IClientBL
+    public interface IUserBL
     {
-        bool Add(Client client);
+        bool Add(User client);
         bool DeleteById(int id);
         bool UpdateById(int id);
-        IEnumerable<Client> GetAll();
-        IEnumerable<Role> GetRolesForUser(string login);
+        User GetByLogin(string login);
+        IEnumerable<User> GetAll();
+        IEnumerable<string> GetRolesForUser(string login);
     }
 }

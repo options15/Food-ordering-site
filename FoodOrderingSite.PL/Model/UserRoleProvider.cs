@@ -10,21 +10,22 @@ namespace FoodOrderingSite.PL.Model
 {
     public class UserRoleProvider : RoleProvider
     {
-        private readonly IClientBL ClientBL;
+        private readonly IUserBL UserBL;
 
         public UserRoleProvider()
         {
-            ClientBL = DependencyResolver.ClientBL;
+            UserBL = DependencyResolver.UserBL;
         }
         public override string[] GetRolesForUser(string username)
         {
-           return  ClientBL.GetRolesForUser(username).ToArray();
+           return  UserBL.GetRolesForUser(username).ToArray();
         }
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            throw new NotImplementedException();
+            return GetRolesForUser(username).Contains(roleName);
         }
+
         #region NOTIMPLEMENTED
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 

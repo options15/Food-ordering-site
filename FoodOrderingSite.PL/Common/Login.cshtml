@@ -1,9 +1,22 @@
 ﻿@{
     Layout = "~/Layout/_MainLayout.cshtml";
 }
+
+@{ 
+
+    string Login = null;
+    string Password = null;
+
+    if (IsPost)
+    { 
+        Login = Request["Login"];
+        Password = Request["Password"];
+    }
+}
+
     <link href="~/Css/Login.css" rel="stylesheet" />
     <div>
-        <form class="mx-auto login" method="post">
+        <form class="mx-auto login" method="post" action="~/Common/Login.cshtml">
             <div class="form-group">
                 <label for="Login">Логин</label>
                 <input type="text" class="form-control" id="Login" placeholder="Введите логин">
