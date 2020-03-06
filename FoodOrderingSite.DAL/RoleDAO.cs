@@ -20,7 +20,12 @@ namespace FoodOrderingSite.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Order> GetAll()
+        public IEnumerable<Role> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Role GetById(int id)
         {
             throw new NotImplementedException();
         }

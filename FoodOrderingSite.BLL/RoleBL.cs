@@ -28,9 +28,14 @@ namespace FoodOrderingSite.BLL
             return roleDAO.DeleteById(id);
         }
 
-        public IEnumerable<Order> GetAll()
+        public IEnumerable<Role> GetAll()
         {
             return roleDAO.GetAll();
+        }
+
+        public Role GetById(int id)
+        {
+            return roleDAO.GetById(id);
         }
 
         public bool UpdateById(int id)

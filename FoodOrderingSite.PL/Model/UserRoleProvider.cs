@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using Configuration;
+using FoodOrderingSite.BLL.Interfaces;
 
 namespace FoodOrderingSite.PL.Model
 {
     public class UserRoleProvider : RoleProvider
     {
+        private readonly IClientBL ClientBL;
 
-        public override string[] GetUsersInRole(string roleName)
+        public UserRoleProvider()
         {
-            throw new NotImplementedException();
+            ClientBL = DependencyResolver.ClientBL;
+        }
+        public override string[] GetRolesForUser(string username)
+        {
+           return  ClientBL.GetRolesForUser(username).ToArray();
         }
 
         public override bool IsUserInRole(string username, string roleName)
@@ -20,6 +27,12 @@ namespace FoodOrderingSite.PL.Model
         }
         #region NOTIMPLEMENTED
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+
+        public override string[] GetUsersInRole(string roleName)
+        {
+            throw new NotImplementedException();
+        }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
@@ -42,11 +55,6 @@ namespace FoodOrderingSite.PL.Model
         }
 
         public override string[] GetAllRoles()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string[] GetRolesForUser(string username)
         {
             throw new NotImplementedException();
         }

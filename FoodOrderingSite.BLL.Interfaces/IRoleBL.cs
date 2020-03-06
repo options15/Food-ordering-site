@@ -12,6 +12,7 @@ namespace FoodOrderingSite.BLL.Interfaces
         bool Add(Role role);
         bool DeleteById(int id);
         bool UpdateById(int id);
-        IEnumerable<Order> GetAll();
+        Role GetById(int id);
+        IEnumerable<Role> GetAll();
     }
 }

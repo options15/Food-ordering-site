@@ -248,6 +248,10 @@
       <Project>{259e71ba-205c-4848-b21a-37796efea46c}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FoodOrderingSite.BLL.Interfaces\FoodOrderingSite.BLL.Interfaces.csproj">
+      <Project>{CE064683-33B2-472B-8B7B-0CCCC09E09D3}</Project>
+      <Name>FoodOrderingSite.BLL.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

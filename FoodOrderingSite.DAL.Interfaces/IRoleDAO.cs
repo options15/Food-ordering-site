@@ -12,6 +12,7 @@ namespace FoodOrderingSite.DAL.Interfaces
         bool Add(Role role);
         bool DeleteById(int id);
         bool UpdateById(int id);
-        IEnumerable<Order> GetAll();
+        IEnumerable<Role> GetAll();
+        Role GetById(int id);
     }
 }
