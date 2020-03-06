@@ -1,0 +1,13 @@
+﻿.login {
+    width: 400px;
+    position: absolute center;
+    background: rgba(255, 255, 255, 0.90);
+    border: 3px solid #413c3c;
+    border-radius:8px 8px;
+    margin: 40px;
+    padding:30px;
+    font-size:20pt;
+}
+a{
+    font-size:10pt;
+}

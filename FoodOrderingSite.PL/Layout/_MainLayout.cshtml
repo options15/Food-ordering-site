@@ -5,32 +5,35 @@
     <script src="~/Scripts/bootstrap.min.js" defer></script>
     <script src="~/Scripts/jquery-3.0.0.min.js" defer></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Css/Main.css" rel="stylesheet" />
 </head>
-<body>
+<body class="bg">
     <!-- Header -->
     <header class="navbar navbar-dark bg-primary">
         <div>
-            <text>Много Вкусно быстро</text>
+           <h2>МНОГО ВКУСНО БЫСТРО<span class="badge badge-secondary">НЯМ</span></h2>
         </div>
         <div>
-            <button class="btn btn-success">Войти</button>
-            <button class="btn btn-success">Корзина</button>
+            <form class="d-inline" method="get" action="~/Common/Login.cshtml">
+                <button type="submit" class="btn btn-success">Войти</button>
+            </form>
+            <form class="d-inline" method="get" action="~/Common/Basket.cshtml">
+                <button type="submit" class="btn btn-success">
+                    Корзина
+                    <span class="badge badge-light">4</span>
+                </button>
+            </form>
         </div>
     </header>
     <!-- Header -->
-    <div style="background-image: url('../Content/img/susi_pizza.jpg');"
-">
-    @RenderBody()
-    </div>
-    <!-- Footer -->
-    <footer class="page-footer font-small bg-primary text-white">
 
-        <!-- Copyright -->
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-primary text-white footer">
         <div class="footer-copyright text-center py-3">
             © 2020 Copyright: options.max@mail.ru
         </div>
-        <!-- Copyright -->
-
     </footer>
     <!-- Footer -->
 </body>
