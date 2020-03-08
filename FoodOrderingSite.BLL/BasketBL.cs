@@ -26,6 +26,11 @@ namespace FoodOrderingSite.BLL
             return basketDAO.DeleteById(id);
         }
 
+        public IEnumerable<Product> GetAll()
+        {
+            return basketDAO.GetAll();
+        }
+
         public bool UpdateById(int id)
         {
             return basketDAO.UpdateById(id);

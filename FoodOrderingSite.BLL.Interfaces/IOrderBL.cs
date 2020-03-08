@@ -9,10 +9,11 @@ namespace FoodOrderingSite.BLL.Interfaces
 {
     public interface IOrderBL
     {
-        bool Add(Order order);
+        int Add(Order order);
         bool DeleteById(int id);
         bool UpdateById(int id);
         IEnumerable<Order> GetAll();
         IEnumerable<Order> GetByCategory();
+        IEnumerable<Order> GetAllByUserId(int userId);
     }
 }

@@ -18,16 +18,52 @@ namespace FoodOrderingSite.PL.Model
             userContext = new UserContext();
         }
 
-        public UserContext GetInstance => userContext;
+        public static UserContext GetInstance => userContext;
 
-        public bool Authorization(string login, string password)
+        public User Authorization(string login, string password)
         {
-            return userBL.GetByLogin(login).Password == password;
+            var user = userBL.GetByLogin(login);
+            if(user.Password == password)
+            {
+                return user;
+            }
+            return null;
         }
 
-        public bool AddNewUser(User user)
+        public string AddNotAuthUser()
         {
-            return userBL.Add(user);
+            return userBL.Add(new User()).ToString();
         }
+
+        public User GetUserById(int id)
+        {
+            return userBL.GetById(id);
+        }
+
+        public bool Registration(int id, User user)
+        {
+            return userBL.UpdateById(id, user);
+        }
+
+        public IEnumerable<Order> GetUserOrdersById(int userId)
+        {
+            return new List<Order>();
+        }
+
+        public IEnumerable<Product> Basket(int id)
+        {
+            return userBL.GetBasketById(id);
+        }
+        public bool AddProductToBasketById(int userId, int productId)
+        {
+            return userBL.AddProductToBasketById(userId, productId);
+        }
+
+        public bool DeleteProductFromBasket(int userId, int productId)
+        {
+            return userBL.DeleteProductFromBasketById(userId, productId);
+        }
+
+        
     }
 }

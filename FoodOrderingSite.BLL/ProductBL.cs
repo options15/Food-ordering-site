@@ -28,12 +28,12 @@ namespace FoodOrderingSite.BLL
             return productDAO.DeleteById(id);
         }
 
-        public IEnumerable<Order> GetAll()
+        public IEnumerable<Product> GetAll()
         {
             return productDAO.GetAll();
         }
 
-        public IEnumerable<Order> GetByCategory()
+        public IEnumerable<Product> GetByCategory()
         {
             return productDAO.GetByCategory();
         }

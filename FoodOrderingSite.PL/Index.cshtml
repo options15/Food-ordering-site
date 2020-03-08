@@ -1,8 +1,11 @@
-﻿@{
+﻿@using FoodOrderingSite.PL.Model
+@{
     Layout = "Layout/_MainLayout.cshtml";
 }
 
-@* куда нибудь убрать *@
+@{ 
+    var products = ProductContext.GetInstance.Products();
+}
 <link href="~/Css/Index.css" rel="stylesheet" />
 
 
@@ -15,37 +18,32 @@
             <button type="button" class="btn btn-warning category">Разное</button>
         </div>
         <div class="col-9" style="background-color:forestgreen; padding:0">
-            <div class="product">
-                <div class="product_content">
-                    <div><h3>Товар 1</h3></div>
-                    <img class="product_img" src="https://www.tokyo-city.ru/goods/1sushi_sake_gurme.jpg" />
-                    <h5>
-                        Вкусный апетитный суша бери и кушай
-                    </h5>
+            @foreach (var item in products)
+            {
+                <div class="product">
+                    <div class="product_content">
+                        <div><h3>@item.Name</h3></div>
+                        <img class="product_img" src="@item.Image" />
+                        <h5>@item.Сomposition</h5>
+                        <h5 class="border bg-info">Стоимость: @item.Price руб.</h5>
+                        <button type="button" class="btn btn-info add-btn" value="@item.Id" id="AddProduct">Положить в корзину</button>
+                    </div>
                 </div>
-            </div>
-            <div class="product">
-                <div class="product_content">
-                    1
-                </div>
-            </div>
-            <div class="product">
-                <div class="product_content">
-                    1
-                </div>
-            </div>
-            <div class="product">
-                <div class="product_content">
-                    1
-                </div>
-            </div>
-            <div class="product">
-                <div class="product_content">
-                    1
-                </div>
-            </div>
+            }
+
         </div>
     </div>
 </div>
 
+<script>
+    $('.add-btn').click(function (e) {
+      $.ajax({
+      type: "POST",
+          url: "Methods/AddProductToBasket",
+          data: "id=" + this.value,
+          success: function (count) {
+              $("#basketCount").text(count);
+      }});
+    });
+</script>
 

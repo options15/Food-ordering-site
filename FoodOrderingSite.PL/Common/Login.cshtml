@@ -1,16 +1,27 @@
-﻿@{
+﻿@using FoodOrderingSite.PL.Model 
+@{
     Layout = "~/Layout/_MainLayout.cshtml";
 }
 
 @{ 
+    if(!User.IsInRole("NotAauthorized"))
+    {
+        Response.Redirect("~");
+    }
 
     string Login = null;
     string Password = null;
 
-    if (IsPost)
-    { 
+    if (IsPost && User.IsInRole("NotAauthorized"))
+    {
         Login = Request["Login"];
         Password = Request["Password"];
+        var result = UserContext.GetInstance.Authorization(Login, Password);
+        if (result != null)
+        {
+            FormsAuthentication.SetAuthCookie(result.Id.ToString(), createPersistentCookie: true);
+            Response.Redirect("~");
+        }
     }
 }
 
@@ -19,11 +30,11 @@
         <form class="mx-auto login" method="post" action="~/Common/Login.cshtml">
             <div class="form-group">
                 <label for="Login">Логин</label>
-                <input type="text" class="form-control" id="Login" placeholder="Введите логин">
+                <input type="text" class="form-control" name="Login" id="Login" placeholder="Введите логин">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
+                <input type="password" class="form-control" name="Password" id="exampleInputPassword1" placeholder="Пароль">
             </div>
             <button type="submit" class="btn btn-primary">Войти</button>
             <div>

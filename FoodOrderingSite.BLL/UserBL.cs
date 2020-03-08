@@ -18,9 +18,14 @@ namespace FoodOrderingSite.BLL
             this.UserDAO = clientDAO;
         }
 
-        public bool Add(User client)
+        public int Add(User client)
         {
             return UserDAO.Add(client);
+        }
+
+        public bool AddProductToBasketById(int userId, int productId)
+        {
+            return UserDAO.AddProductToBasketById(userId, productId);
         }
 
         public bool DeleteById(int id)
@@ -28,9 +33,24 @@ namespace FoodOrderingSite.BLL
             return UserDAO.DeleteById(id);
         }
 
+        public bool DeleteProductFromBasketById(int userId, int productId)
+        {
+            return UserDAO.DeleteProductFromBasketById(userId, productId);
+        }
+
         public IEnumerable<User> GetAll()
         {
             return UserDAO.GetAll();
+        }
+
+        public IEnumerable<Product> GetBasketById(int id)
+        {
+            return UserDAO.GetBasketById(id);
+        }
+
+        public User GetById(int id)
+        {
+            return UserDAO.GetById(id);
         }
 
         public User GetByLogin(string login)
@@ -43,9 +63,9 @@ namespace FoodOrderingSite.BLL
             return UserDAO.GetRolesForUser(login);
         }
 
-        public bool UpdateById(int id)
+        public bool UpdateById(int id, User user)
         {
-            return UserDAO.UpdateById(id);
+            return UserDAO.UpdateById(id, user);
         }
     }
 }

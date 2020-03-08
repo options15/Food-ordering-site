@@ -97,6 +97,7 @@
     <Content Include="Css\Index.css" />
     <Content Include="Css\Login.css" />
     <Content Include="Css\Main.css" />
+    <Content Include="MyScripts\Main.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -128,6 +129,10 @@
     <Content Include="Common\User.cshtml" />
     <Content Include="Common\Basket.cshtml" />
     <Content Include="Common\Registration.cshtml" />
+    <Content Include="Methods\SignOut.cshtml" />
+    <Content Include="Methods\AddProductToBasket.cshtml" />
+    <Content Include="Methods\MakeOrder.cshtml" />
+    <Content Include="Methods\DeleteProductFromBasket.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -207,6 +212,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\OrderContext.cs" />
+    <Compile Include="Model\ProductContext.cs" />
     <Compile Include="Model\UserContext.cs" />
     <Compile Include="Model\UserRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,7 +18,7 @@ namespace FoodOrderingSite.BLL
             this.orderDAO = orderDAO;
         }
 
-        public bool Add(Order order)
+        public int Add(Order order)
         {
             return orderDAO.Add(order);
         }
@@ -41,6 +41,11 @@ namespace FoodOrderingSite.BLL
         public bool UpdateById(int id)
         {
             return orderDAO.UpdateById(id);
+        }
+
+        public IEnumerable<Order> GetAllByUserId(int userId)
+        {
+            return orderDAO.GetAllByUserId(userId);
         }
     }
 }

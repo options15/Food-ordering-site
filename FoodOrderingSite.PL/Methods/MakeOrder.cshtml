@@ -1,0 +1,14 @@
+﻿@using FoodOrderingSite.PL.Model
+@{ 
+    if (IsPost)
+    {
+        var userId = int.Parse(User.Identity.Name);
+        var result = OrderContext.GetInstance.SentOrder(new Entities.Order
+        {
+            UserId = userId,
+            Products = UserContext.GetInstance.Basket(userId).ToList()
+        });
+        Response.Redirect("~/Common/Basket");
+    }
+    Response.Redirect("~");
+}

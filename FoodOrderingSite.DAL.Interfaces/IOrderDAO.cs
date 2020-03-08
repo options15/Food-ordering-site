@@ -9,10 +9,11 @@ namespace FoodOrderingSite.DAL.Interfaces
 {
     public interface IOrderDAO
     {
-        bool Add(Order order);
+        int Add(Order order);
         bool DeleteById(int id);
         bool UpdateById(int id);
         IEnumerable<Order> GetAll();
+        IEnumerable<Order> GetAllByUserId(int userId);
         IEnumerable<Order> GetByCategory();
     }
 }

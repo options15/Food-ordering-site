@@ -12,5 +12,6 @@ namespace FoodOrderingSite.DAL.Interfaces
         bool Add(Basket basket);
         bool DeleteById(int id);
         bool UpdateById(int id);
+        IEnumerable<Product> GetAll();
     }
 }

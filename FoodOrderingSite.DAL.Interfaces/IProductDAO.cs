@@ -12,7 +12,7 @@ namespace FoodOrderingSite.DAL.Interfaces
         bool Add(Product product);
         bool DeleteById(int id);
         bool UpdateById(int id);
-        IEnumerable<Order> GetAll();
-        IEnumerable<Order> GetByCategory();
+        IEnumerable<Product> GetAll();
+        IEnumerable<Product> GetByCategory();
     }
 }

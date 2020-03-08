@@ -1,0 +1,13 @@
+﻿@using FoodOrderingSite.PL.Model
+@using System.Linq;
+@{
+
+    if (IsAjax)
+    {
+        var product = int.Parse(Request["Id"]);
+        var user = int.Parse(User.Identity.Name);
+        UserContext.GetInstance.DeleteProductFromBasket(user, product);
+        @UserContext.GetInstance.Basket(user).Count();
+    }
+
+}

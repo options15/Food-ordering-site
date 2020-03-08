@@ -20,6 +20,11 @@ namespace FoodOrderingSite.DAL
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Product> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool UpdateById(int id)
         {
             throw new NotImplementedException();

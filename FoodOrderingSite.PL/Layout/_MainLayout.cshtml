@@ -1,9 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@using FoodOrderingSite.PL.Model
+
+@{  
+    if (!User.Identity.IsAuthenticated)
+    {
+        var newUserId = UserContext.GetInstance.AddNotAuthUser();
+        FormsAuthentication.SetAuthCookie(newUserId, createPersistentCookie: true);
+        Response.Redirect("~");
+    }
+    var userId = int.Parse(User.Identity.Name);
+    var user = UserContext.GetInstance.GetUserById(userId);
+    var basket = UserContext.GetInstance.Basket(userId);
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>@Page.Title</title>
     <script src="~/Scripts/bootstrap.min.js" defer></script>
-    <script src="~/Scripts/jquery-3.0.0.min.js" defer></script>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Css/Main.css" rel="stylesheet" />
 </head>
@@ -11,16 +25,28 @@
     <!-- Header -->
     <header class="navbar navbar-dark bg-primary">
         <div>
-           <h2>МНОГО ВКУСНО БЫСТРО<span class="badge badge-secondary">НЯМ</span></h2>
+            <a href="~/Index.cshtml"><h2>МНОГО ВКУСНО БЫСТРО<span class="badge badge-secondary">НЯМ</span></h2></a>
         </div>
         <div>
-            <form class="d-inline" method="get" action="~/Common/Login.cshtml">
-                <button type="submit" class="btn btn-success">Войти</button>
-            </form>
+            @{
+                if (User.IsInRole("NotAauthorized"))
+                {
+                    <form class="d-inline" method="get" action="~/Common/Login.cshtml">
+                        <button type="submit" class="btn btn-success">Войти</button>
+                    </form>
+                }
+                else
+                {
+                    <h3 class="d-inline">Привет @user.Name! </h3>
+                    <form class="d-inline" method="get" action="~/Methods/SignOut.cshtml">
+                        <button type="submit" class="btn btn-success">Выйти</button>
+                    </form>
+                }
+            }
             <form class="d-inline" method="get" action="~/Common/Basket.cshtml">
                 <button type="submit" class="btn btn-success">
                     Корзина
-                    <span class="badge badge-light">4</span>
+                    <span id="basketCount" class="badge badge-light">@basket.Count()</span>
                 </button>
             </form>
         </div>
@@ -30,7 +56,7 @@
     @RenderBody()
 
     <!-- Footer -->
-    <footer class="page-footer font-small bg-primary text-white footer">
+    <footer class="font-small bg-primary text-white footer">
         <div class="footer-copyright text-center py-3">
             © 2020 Copyright: options.max@mail.ru
         </div>

@@ -14,7 +14,7 @@
     background-color: orange;
     border: solid 2px #141414;
     border-radius: 8px 8px;
-    height: 300px;
+    height: 400px;
 }
 .product_img{
     width:200px;
@@ -23,4 +23,7 @@
 }
 h2{
     color: #00ff21;
+}
+.add-btn{
+    background-color: #87ff50;
 }
