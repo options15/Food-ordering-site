@@ -1,3 +1,73 @@
-﻿@{
+﻿@using FoodOrderingSite.PL.Model
+@using Entities
+@{
     Layout = "~/Layout/_MainLayout.cshtml";
 }
+@{ 
+    if (!User.IsInRole("Аdministrator") && !User.IsInRole("TopAdministrator"))
+    {
+        Response.Redirect("~");
+    }
+    var orders = OrderContext.GetInstance.GetAll();
+    var clientContext = UserContext.GetInstance;
+}
+    <div class="container" >
+        <div class="row">
+            <div class="col-3">
+                <button type="button" class="btn btn-warning category" value="1">Новые</button>
+                <button type="button" class="btn btn-warning category" value="2">Готовятся</button>
+                <button type="button" class="btn btn-warning category" value="3">Отправлены</button>
+                <button type="button" class="btn btn-warning category" value="4">Исполнены</button>
+                <button type="button" class="btn btn-warning category" value="5">Отменены</button>
+            </div>
+            <div class="col-9 bg-shadow slider-vertical" id="orders">
+                @foreach (var item in orders)
+                {
+                 <div class="Order row" >
+                    <div class="col-5">
+                        <label>Статус: @item.Status</label>
+                        <h4>Заказчик: @clientContext.GetUserById(item.UserId).Name</h4>
+                        <h4>Телефон: @clientContext.GetUserById(item.UserId).Phone</h4>
+                        <h4>Адрес: @clientContext.GetUserById(item.UserId).Address</h4>
+
+                    </div>
+                    <div class="col-7">
+                        <div class="card" style="width: 18rem;">
+                            <ul class="list-group list-group-flush">
+                                @foreach (var product in item.Products)
+                                {
+                                    <li class="list-group-item">@product.Name @product.Price руб.</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="order-sum">Итого: @item.Products.Sum(x => x.Price) </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $('.category').click(function (e) {
+      $.ajax({
+      type: "POST",
+          url: "/Methods/GetOrdersByStatus",
+          data: "Status=" + this.value,
+          success: function (orders) {
+              $("#orders").replaceWith(orders);
+          }
+      });
+    });
+
+      $('.dropdown-item').click(function (e) {
+      $.ajax({
+      type: "POST",
+          url: "/Methods/ChangeOrderStatus",
+          data: "Status=" + this.value,
+          success: function (orders) {
+              $("#orders").replaceWith(orders);
+          }
+      });
+    });
+    </script>

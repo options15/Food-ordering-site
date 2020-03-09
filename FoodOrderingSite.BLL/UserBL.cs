@@ -63,6 +63,11 @@ namespace FoodOrderingSite.BLL
             return UserDAO.GetRolesForUser(login);
         }
 
+        public bool Registration(int id, User user)
+        {
+            return UserDAO.Registration(id, user);
+        }
+
         public bool UpdateById(int id, User user)
         {
             return UserDAO.UpdateById(id, user);

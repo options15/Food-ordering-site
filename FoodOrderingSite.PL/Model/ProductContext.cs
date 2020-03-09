@@ -24,5 +24,25 @@ namespace FoodOrderingSite.PL.Model
         { 
         return productBL.GetAll();
         }
+
+        public IEnumerable<Product> GetProductsByCategory( Category category)
+        {
+            return productBL.GetByCategory(category);
+        }
+
+        public Product GetProductById(int id)
+        {
+            return productBL.GetProductById(id);
+        }
+
+        public bool UpdateProductById(int id, Product product)
+        {
+            return productBL.UpdateById(id, product);
+        }
+
+        public bool Add(Product product)
+        {
+            return productBL.Add(product);
+        }
     }
 }

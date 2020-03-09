@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBasketDAO.cs" />
     <Compile Include="IUserDAO.cs" />
     <Compile Include="IOrderDAO.cs" />
     <Compile Include="IProductDAO.cs" />

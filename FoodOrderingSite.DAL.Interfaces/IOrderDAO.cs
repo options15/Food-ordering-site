@@ -14,6 +14,7 @@ namespace FoodOrderingSite.DAL.Interfaces
         bool UpdateById(int id);
         IEnumerable<Order> GetAll();
         IEnumerable<Order> GetAllByUserId(int userId);
-        IEnumerable<Order> GetByCategory();
+        IEnumerable<Order> GetByStatus(Status status);
+        bool ChangeStatusById(int id, Status status);
     }
 }

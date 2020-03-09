@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasketBL.cs" />
     <Compile Include="UserBL.cs" />
     <Compile Include="OrderBL.cs" />
     <Compile Include="ProductBL.cs" />

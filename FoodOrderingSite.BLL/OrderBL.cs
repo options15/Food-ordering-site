@@ -33,9 +33,9 @@ namespace FoodOrderingSite.BLL
             return orderDAO.GetAll();
         }
 
-        public IEnumerable<Order> GetByCategory()
+        public IEnumerable<Order> GetByStatus(Status status)
         {
-            return orderDAO.GetByCategory();
+            return orderDAO.GetByStatus(status);
         }
 
         public bool UpdateById(int id)
@@ -46,6 +46,11 @@ namespace FoodOrderingSite.BLL
         public IEnumerable<Order> GetAllByUserId(int userId)
         {
             return orderDAO.GetAllByUserId(userId);
+        }
+
+        public bool ChangeStatusById(int id, Status status)
+        {
+            return orderDAO.ChangeStatusById(id, status);
         }
     }
 }

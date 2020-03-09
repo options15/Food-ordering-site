@@ -1,3 +1,32 @@
-﻿@{
+﻿@using FoodOrderingSite.PL.Model
+@{
     Layout = "~/Layout/_MainLayout.cshtml";
 }
+@{
+    if (!User.IsInRole("Аdministrator") && !User.IsInRole("TopAdministrator"))
+    {
+        Response.Redirect("~");
+    }
+        var products = ProductContext.GetInstance.Products();
+}
+    <div class="container">
+        <div class="bg-shadow slider-vertical">
+            @foreach (var item in products)
+            {
+                <div class="product">
+                    <div class="product_content">
+                        <div><h3>@item.Name</h3></div>
+                        <img class="product_img" src="@item.Image" />
+                        <h5>@item.Сomposition</h5>
+                        <h5 class="border bg-info">Стоимость: @item.Price руб.</h5>
+                        <button type="button" class="btn btn-info edit-btn" value="@item.Id">Редактировать</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+<script>
+    $(".edit-btn").click(function (e) {
+        document.location.href = "Product?Id=" + this.value;
+    })
+</script>

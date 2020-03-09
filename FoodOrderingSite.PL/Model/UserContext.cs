@@ -42,7 +42,7 @@ namespace FoodOrderingSite.PL.Model
 
         public bool Registration(int id, User user)
         {
-            return userBL.UpdateById(id, user);
+            return userBL.Registration(id, user);
         }
 
         public IEnumerable<Order> GetUserOrdersById(int userId)

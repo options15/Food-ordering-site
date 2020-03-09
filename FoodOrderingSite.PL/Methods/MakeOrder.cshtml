@@ -1,8 +1,18 @@
 ﻿@using FoodOrderingSite.PL.Model
+@using Configuration
 @{ 
     if (IsPost)
     {
+        var userBl = DependencyResolver.UserBL;
         var userId = int.Parse(User.Identity.Name);
+
+        var user = userBl.GetById(userId);
+
+        user.Name = Request["Name"];
+        user.Address = Request["Address"];
+        user.Phone = Request["Phone"];
+
+        userBl.UpdateById(userId, user);
         var result = OrderContext.GetInstance.SentOrder(new Entities.Order
         {
             UserId = userId,

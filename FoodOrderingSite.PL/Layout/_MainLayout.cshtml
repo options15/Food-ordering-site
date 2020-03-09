@@ -16,13 +16,34 @@
 <html>
 <head>
     <title>@Page.Title</title>
-    <script src="~/Scripts/bootstrap.min.js" defer></script>
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Css/Main.css" rel="stylesheet" />
+    <link href="~/Css/Index.css" rel="stylesheet" />
 </head>
 <body class="bg">
     <!-- Header -->
+     @{ if (User.IsInRole("Аdministrator") || User.IsInRole("TopAdministrator"))
+        {
+    <header class="navbar navbar-dark bg-danger">
+             <div>
+                 <span>Панель администратора</span>
+                 <form class="d-inline" method="get" action="~/Management/AllOrders.cshtml">
+                     <button class="btn btn-dark">Заказы</button>
+                 </form>
+                 <form class="d-inline" method="get" action="~/Management/AllProducts.cshtml">
+                     <button class="btn btn-dark">Продукты</button>
+                 </form>
+                 <form class="d-inline" method="get" action="~/Management/Product.cshtml">
+                     <button class="btn btn-dark">Новый продукт</button>
+                 </form>
+             </div>
+     </header>
+        }
+     }
     <header class="navbar navbar-dark bg-primary">
         <div>
             <a href="~/Index.cshtml"><h2>МНОГО ВКУСНО БЫСТРО<span class="badge badge-secondary">НЯМ</span></h2></a>

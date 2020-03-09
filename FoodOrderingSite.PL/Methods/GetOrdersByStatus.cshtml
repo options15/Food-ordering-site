@@ -1,0 +1,52 @@
+﻿@using FoodOrderingSite.PL.Model
+@using System.Linq;
+@using Entities;
+
+@{
+
+    if (IsAjax)
+    {
+        var status = int.Parse(Request["Status"]);
+        var orders = OrderContext.GetInstance.GetByStatus((Status)status);
+        var clientContext = UserContext.GetInstance;
+    <div class="col-9 bg-shadow slider-vertical" id="orders">
+        @foreach (var item in orders)
+        {
+        <div class="Order">
+            <div class="row">
+                <div class="col-5">
+                    <label>Статус: @item.Status</label>
+                    <h4>Заказчик: @clientContext.GetUserById(item.UserId).Name</h4>
+                    <h4>Телефон: @clientContext.GetUserById(item.UserId).Phone</h4>
+                    <h4>Адрес: @clientContext.GetUserById(item.UserId).Address</h4>
+
+                </div>
+                <div class="col-7">
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                            @foreach (var product in item.Products)
+                            {
+                                <li class="list-group-item">@product.Name @product.Price руб.</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="order-sum">Итого: @item.Products.Sum(x => x.Price) </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Изменить статус заказа
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="~/Methods/ChangeOrderStatus?id=@item.Id&Status=1">Новый</a>
+                    <a class="dropdown-item" href="~/Methods/ChangeOrderStatus?id=@item.Id&Status=2">Готовится</a>
+                    <a class="dropdown-item" href="~/Methods/ChangeOrderStatus?id=@item.Id&Status=3">Отправлен</a>
+                    <a class="dropdown-item" href="~/Methods/ChangeOrderStatus?id=@item.Id&Status=4">Исполнен</a>
+                    <a class="dropdown-item" href="~/Methods/ChangeOrderStatus?id=@item.Id&Status=5">Отменён</a>
+                </div>
+            </div>
+        </div>
+            }
+        </div>
+        }
+    }

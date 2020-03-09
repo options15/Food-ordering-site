@@ -90,7 +90,7 @@ namespace FoodOrderingSite.DAL
             {
                 var command = connection.CreateCommand();
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.CommandText = "dbo.GetRolesForUser";
+                command.CommandText = "dbo.GetProductFromOrderById";
 
                 var idParametr = new SqlParameter()
                 {
@@ -109,8 +109,8 @@ namespace FoodOrderingSite.DAL
                     products.Add(new Product
                     {
                         Name = result["Name"] as string,
-                        Сomposition = result["Name"] as string,
-                        Price = (int)result["Name"]
+                        Сomposition = result["Сomposition"] as string,
+                        Price = (int)result["Price"]
                     });
                 }
                 return products;
@@ -119,12 +119,85 @@ namespace FoodOrderingSite.DAL
 
         public IEnumerable<Order> GetAll()
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetAllOrders";
+
+                connection.Open();
+                var result = command.ExecuteReader();
+                var orders = new List<Order>();
+                while (result.Read())
+                {
+                    orders.Add(new Order
+                    {
+                        Id = (int)result["Id"],
+                        Products = GetById((int)result["Id"]).ToList(),
+                        Status = StatusById((int)result["Status"]),
+                        UserId = (int)result["User_Id"]
+                    });
+                }
+                return orders.ToArray();
+            }
         }
 
-        public IEnumerable<Order> GetByCategory()
+        private string StatusById(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetStatusById";
+
+                var idParametr = new SqlParameter()
+                {
+                    DbType = System.Data.DbType.Int32,
+                    ParameterName = "@Id",
+                    Value = id,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(idParametr);
+
+                connection.Open();
+                var result = command.ExecuteReader();
+                result.Read();
+                return result["Status"] as string;
+            }
+        }
+
+        public IEnumerable<Order> GetByStatus(Status status)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetOrderByStatus";
+
+                var statusParametr = new SqlParameter()
+                {
+                    DbType = System.Data.DbType.Int32,
+                    ParameterName = "@Status",
+                    Value = status,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(statusParametr);
+
+                connection.Open();
+                var result = command.ExecuteReader();
+                var orders = new List<Order>();
+                while (result.Read())
+                {
+                    orders.Add(new Order
+                    {
+                        Id = (int)result["Id"],
+                        Products = GetById((int)result["Id"]).ToList(),
+                        Status = result["Status"] as string,
+                    UserId = (int)result["User_Id"]
+                    });
+                }
+                return orders.ToArray();
+            }
         }
 
         public IEnumerable<Order> GetAllByUserId(int userId)
@@ -161,6 +234,38 @@ namespace FoodOrderingSite.DAL
         public bool UpdateById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public bool ChangeStatusById(int id, Status status)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "dbo.ChangeOrderStatusById";
+
+                var UserIdParametr = new SqlParameter()
+                {
+                    DbType = System.Data.DbType.Int32,
+                    ParameterName = "@OrderId",
+                    Value = id,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(UserIdParametr);
+
+                var OrderIdParametr = new SqlParameter()
+                {
+                    DbType = System.Data.DbType.Int32,
+                    ParameterName = "@Status",
+                    Value = status,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(OrderIdParametr);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                return true;
+            }
         }
     }
 }

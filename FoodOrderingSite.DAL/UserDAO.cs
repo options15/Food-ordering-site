@@ -84,7 +84,7 @@ namespace FoodOrderingSite.DAL
                 {
                     DbType = System.Data.DbType.Int32,
                     ParameterName = "@UserId",
-                    Value = 0,
+                    Value = userId,
                     Direction = System.Data.ParameterDirection.Input
                 };
                 command.Parameters.Add(UserIdParametr);
@@ -93,7 +93,7 @@ namespace FoodOrderingSite.DAL
                 {
                     DbType = System.Data.DbType.Int32,
                     ParameterName = "@ProductId",
-                    Value = 0,
+                    Value = productId,
                     Direction = System.Data.ParameterDirection.Input
                 };
                 command.Parameters.Add(ProductIdParametr);
@@ -236,6 +236,47 @@ namespace FoodOrderingSite.DAL
                     roles.Add(result["Status"] as string);
                 }
                 return roles.ToArray();
+            }
+        }
+
+        public bool Registration(int id, User user)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "dbo.Registration";
+
+                var IdParametr = new SqlParameter()
+                {
+                    DbType = System.Data.DbType.Int32,
+                    ParameterName = "@UserId",
+                    Value = id,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(IdParametr);
+
+                var loginParametr = new SqlParameter()
+                {
+                    DbType = System.Data.DbType.String,
+                    ParameterName = "@UserLogin",
+                    Value = user.Login,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(loginParametr);
+
+                var passwordParametr = new SqlParameter()
+                {
+                    DbType = System.Data.DbType.String,
+                    ParameterName = "@UserPassword",
+                    Value = user.Password,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(passwordParametr);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                return true;
             }
         }
 

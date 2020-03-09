@@ -24,5 +24,19 @@ namespace FoodOrderingSite.PL.Model
         {
             return orderBL.Add(order);
         }
+
+        public IEnumerable<Order> GetAll()
+        {
+            return orderBL.GetAll();
+        }
+
+        public IEnumerable<Order> GetByStatus(Status status)
+        {
+            return orderBL.GetByStatus(status);
+        }
+        public bool ChangeOrderStatusById(int id, Status status)
+        {
+            return orderBL.ChangeStatusById(id, status);
+        }
     }
 }

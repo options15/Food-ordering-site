@@ -1,0 +1,12 @@
+﻿@using FoodOrderingSite.PL.Model
+@using Entities
+@{ 
+    if (!User.IsInRole("Аdministrator") && !User.IsInRole("TopAdministrator"))
+    {
+        Response.Redirect("~");
+    }
+    var id = int.Parse(Request["Id"]);
+    var status = int.Parse(Request["Status"]);
+    OrderContext.GetInstance.ChangeOrderStatusById(id, (Status)status);
+    Response.Redirect("~/Management/AllOrders");
+}

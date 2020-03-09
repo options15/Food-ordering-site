@@ -11,8 +11,9 @@ namespace FoodOrderingSite.BLL.Interfaces
     {
         bool Add(Product product);
         bool DeleteById(int id);
-        bool UpdateById(int id);
+        bool UpdateById(int id, Product product);
         IEnumerable<Product> GetAll();
-        IEnumerable<Product> GetByCategory();
+        IEnumerable<Product> GetByCategory(Category category);
+        Product GetProductById(int id);
     }
 }

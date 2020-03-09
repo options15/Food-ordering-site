@@ -33,14 +33,19 @@ namespace FoodOrderingSite.BLL
             return productDAO.GetAll();
         }
 
-        public IEnumerable<Product> GetByCategory()
+        public IEnumerable<Product> GetByCategory(Category category)
         {
-            return productDAO.GetByCategory();
+            return productDAO.GetByCategory(category);
         }
 
-        public bool UpdateById(int id)
+        public Product GetProductById(int id)
         {
-            return productDAO.UpdateById(id);
+            return productDAO.GetProductById(id);
+        }
+
+        public bool UpdateById(int id, Product product)
+        {
+            return productDAO.UpdateById(id, product);
         }
     }
 }

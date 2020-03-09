@@ -19,5 +19,6 @@ namespace FoodOrderingSite.BLL.Interfaces
         IEnumerable<Product> GetBasketById(int id);
         bool AddProductToBasketById(int id, int productId);
         bool DeleteProductFromBasketById(int userId, int productId);
+        bool Registration(int id, User user);
     }
 }

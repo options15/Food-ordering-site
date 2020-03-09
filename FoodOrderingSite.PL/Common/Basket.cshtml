@@ -3,42 +3,59 @@
     Layout = "~/Layout/_MainLayout.cshtml";
 }
 @{
-    var products = UserContext.GetInstance.Basket(int.Parse(User.Identity.Name));
+    int.TryParse(User.Identity.Name, out int id);
+    var products = UserContext.GetInstance.Basket(id);
+    var user = UserContext.GetInstance.GetUserById(id);
 }
 <link href="~/Css/Index.css" rel="stylesheet" />
 
 
-<div class="container" style="background-color:burlywood">
+<div class="container bg-shadow">
     <div class="row">
         <div class="col-md-4">
             <form method="post" action="~/Methods/MakeOrder.cshtml">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Имя</label>
-                    <input type="text" class="form-control" name="Name" id="Name" required placeholder="Введите Ваше имя">
+                    <input type="text" class="form-control" name="Name" id="Name" required placeholder="Введите Ваше имя" value="@user.Name">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Адрес</label>
-                    <input type="text" class="form-control" name="Address" id="exampleInputPassword1" required placeholder="Адрес">
+                    <input type="text" class="form-control" name="Address" id="exampleInputPassword1" required placeholder="Адрес" value="@user.Address">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Номер телефона</label>
-                    <input type="text" class="form-control" name="Phone" id="exampleInputPassword1" required placeholder="Номер телефона">
+                    <input type="text" class="form-control" name="Phone" id="exampleInputPassword1" required placeholder="Номер телефона" value="@user.Phone">
                 </div>
-                <button type="submit" class="btn btn-primary">Подтвердить заказ</button>
+                @if (products.Count() != 0)
+                {
+                    <button type="submit" class="btn btn-primary">Подтвердить заказ</button>
+                }
+                else
+                {
+                    <button type="submit" disabled class="btn btn-primary">Подтвердить заказ</button>
+                }
+
             </form>
         </div>
-        <div class="col-md-8">
-            @foreach (var item in products)
+        <div class="col-md-8 slider-vertical">
+            @if (products.Count() == 0)
             {
-                <div class="product">
+            <h3>Ваша корзина пуста!</h3>
+            }
+            else
+            {
+            foreach (var item in products)
+            {
+                <div class="product" id="@item.Id">
                     <div class="product_content">
                         <div><h3>@item.Name</h3></div>
                         <img class="product_img" src="@item.Image" />
                         <h5>@item.Сomposition</h5>
                         <h5 class="border bg-info">Стоимость: @item.Price руб.</h5>
-                        <button type="button" class="btn btn-info add-btn" value="@item.Id" id="AddProduct">Убрать из корзины</button>
+                        <button type="button" class="btn btn-danger add-btn" value="@item.Id" id="DeleteProduct">Убрать из корзины</button>
                     </div>
                 </div>
+            }
             }
         </div>
     </div>
@@ -48,10 +65,14 @@
     $('.add-btn').click(function (e) {
       $.ajax({
       type: "POST",
-          url: "Methods/AddProductToBasket",
-          data: "id=" + this.value,
+          url: "/Methods/DeleteProductFromBasket",
+          data: "Id=" + this.value,
           success: function (count) {
               $("#basketCount").text(count);
-      }});
+              alert("Заказ оформлен. Ожидайте звонка оператора, для подтверждения заказа");
+          }
+      });
+
+        $("#" + this.value).remove();
     });
 </script>

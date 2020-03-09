@@ -1,3 +1,85 @@
-﻿@{
+﻿@using FoodOrderingSite.PL.Model
+@using Entities
+@{
     Layout = "~/Layout/_MainLayout.cshtml";
+}
+@{
+    if (!User.IsInRole("Аdministrator") && !User.IsInRole("TopAdministrator"))
+    {
+        Response.Redirect("~");
+    }
+
+    int.TryParse(Request["Id"], out int productId);
+    if (IsPost)
+    {
+        var newProduct = new Product
+        {
+            Id = productId,
+            Name = Request["Name"],
+            Сomposition = Request["Composition"],
+            Image = Request["Image"],
+            Price = int.Parse(Request["Price"]),
+            Category = Category.Разное
+        };
+        if (newProduct.Id == 0)
+        {
+            ProductContext.GetInstance.Add(newProduct);
+        }
+        else
+        {
+             ProductContext.GetInstance.UpdateProductById(productId, newProduct);
+        }
+    }
+
+    var product = ProductContext.GetInstance.GetProductById(productId);
+}
+@if (product != null)
+{
+    <div class="container bg-shadow">
+        <form method="post" action="~/Management/Product.cshtml">
+            <input type="hidden" name="Id" value="@productId">
+            <div class="form-group">
+                <label for="Name">Название</label>
+                <input type="text" class="form-control" name="Name" placeholder="Название" value="@product.Name">
+            </div>
+            <div class="form-group">
+                <label for="Composition">Описание</label>
+                <input type="text" class="form-control" name="Composition" placeholder="Описание" value="@product.Сomposition">
+            </div>
+            <div class="form-group">
+                <label for="Image">Фотография</label>
+                <input type="text" class="form-control" name="Image" placeholder="Фотография" value="@product.Image">
+            </div>
+            <div class="form-group">
+                <label for="Price">Стоимость</label>
+                <input type="number" class="form-control" name="Price" placeholder="Стоимость" value="@product.Price">
+            </div>
+            <button type="submit" class="btn btn-primary">Изменить</button>
+        </form>
+    </div>
+}
+else
+{
+        <div class="container bg-shadow">
+            <form method="post" action="~/Management/Product.cshtml">
+                <input type="hidden" name="Id" value="0">
+                <div class="form-group">
+                    <label for="Name">Название</label>
+                    <input type="text" class="form-control" name="Name" placeholder="Название">
+                </div>
+                <div class="form-group">
+                    <label for="Composition">Описание</label>
+                    <input type="text" class="form-control" name="Composition" placeholder="Описание">
+                </div>
+                <div class="form-group">
+                    <label for="Image">Фотография</label>
+                    <input type="text" class="form-control" name="Image" placeholder="Фотография">
+                </div>
+                <div class="form-group">
+                    <label for="Price">Стоимость</label>
+                    <input type="number" class="form-control" name="Price" placeholder="Стоимость">
+                </div>
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </form>
+        </div>   
 }
