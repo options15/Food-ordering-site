@@ -1,10 +1,8 @@
-﻿using FoodOrderingSite.BLL.Interfaces;
+﻿using Configuration;
+using Entities;
+using FoodOrderingSite.BLL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Configuration;
-using Entities;
 
 namespace FoodOrderingSite.PL.Model
 {
@@ -21,28 +19,72 @@ namespace FoodOrderingSite.PL.Model
         public static ProductContext GetInstance => productContext;
 
         public IEnumerable<Product> Products()
-        { 
-        return productBL.GetAll();
+        {
+            try
+            {
+                return productBL.GetAll();
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return null;
+            }
         }
 
-        public IEnumerable<Product> GetProductsByCategory( Category category)
+        public IEnumerable<Product> GetProductsByCategory(Category category)
         {
-            return productBL.GetByCategory(category);
+
+            try
+            {
+                return productBL.GetByCategory(category);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return null;
+            }
         }
 
         public Product GetProductById(int id)
         {
-            return productBL.GetProductById(id);
+
+            try
+            {
+                return productBL.GetProductById(id);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return null;
+            }
         }
 
         public bool UpdateProductById(int id, Product product)
         {
-            return productBL.UpdateById(id, product);
+            try
+            {
+                return productBL.UpdateById(id, product);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return false;
+            }
+
         }
 
         public bool Add(Product product)
         {
-            return productBL.Add(product);
+
+            try
+            {
+                return productBL.Add(product);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return false;
+            }
         }
     }
 }

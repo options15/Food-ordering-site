@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using Configuration;
+﻿using Configuration;
 using FoodOrderingSite.BLL.Interfaces;
+using System;
+using System.Linq;
+using System.Web.Security;
 
 namespace FoodOrderingSite.PL.Model
 {
@@ -18,7 +16,7 @@ namespace FoodOrderingSite.PL.Model
         }
         public override string[] GetRolesForUser(string username)
         {
-           return  UserBL.GetRolesForUser(username).ToArray();
+            return UserBL.GetRolesForUser(username).ToArray();
         }
 
         public override bool IsUserInRole(string username, string roleName)

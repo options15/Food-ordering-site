@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entities;
+﻿using FoodOrderingSite.BLL;
 using FoodOrderingSite.BLL.Interfaces;
-using FoodOrderingSite.BLL;
-using FoodOrderingSite.DAL.Interfaces;
 using FoodOrderingSite.DAL;
+using FoodOrderingSite.DAL.Interfaces;
 
 namespace Configuration
 {
@@ -21,9 +15,9 @@ namespace Configuration
         private static readonly IOrderDAO orderDAO;
         private static readonly IProductDAO productDAO;
 
-        public static  IUserBL UserBL => userBL;
-        public static  IOrderBL OrderBL => orderBL;
-        public static  IProductBL ProductBL => productBL;
+        public static IUserBL UserBL => userBL;
+        public static IOrderBL OrderBL => orderBL;
+        public static IProductBL ProductBL => productBL;
 
         static DependencyResolver()
         {

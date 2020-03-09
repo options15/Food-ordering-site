@@ -1,11 +1,8 @@
 ﻿using Entities;
 using FoodOrderingSite.DAL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodOrderingSite.DAL
 {
@@ -188,7 +185,7 @@ namespace FoodOrderingSite.DAL
                         Id = (int)result["Id"],
                         Products = GetById((int)result["Id"]).ToList(),
                         Status = result["Status"] as string,
-                    UserId = (int)result["User_Id"]
+                        UserId = (int)result["User_Id"]
                     });
                 }
                 return orders.ToArray();
@@ -217,9 +214,10 @@ namespace FoodOrderingSite.DAL
                 var roles = new List<Order>();
                 while (result.Read())
                 {
-                    roles.Add( new Order{
-                       Id = (int)result["Id"],
-                       Status = result["Status"] as string
+                    roles.Add(new Order
+                    {
+                        Id = (int)result["Id"],
+                        Status = result["Status"] as string
                     });
                 }
                 return roles;

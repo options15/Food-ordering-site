@@ -3,9 +3,6 @@ using FoodOrderingSite.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodOrderingSite.DAL
 {
@@ -132,12 +129,13 @@ namespace FoodOrderingSite.DAL
                 var basket = new List<Product>();
                 while (result.Read())
                 {
-                    basket.Add( new Product{
-                    Id = (int)result["Id"],
-                    Name = result["Name"] as string,
-                    Сomposition = result["Сomposition"] as string,
-                    Image = result["ImageURL"] as string,
-                    Price = (int)result["Price"]
+                    basket.Add(new Product
+                    {
+                        Id = (int)result["Id"],
+                        Name = result["Name"] as string,
+                        Сomposition = result["Сomposition"] as string,
+                        Image = result["ImageURL"] as string,
+                        Price = (int)result["Price"]
                     });
                 };
                 return basket.ToArray();

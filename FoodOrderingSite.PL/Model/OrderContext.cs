@@ -1,10 +1,8 @@
-﻿using FoodOrderingSite.BLL.Interfaces;
+﻿using Configuration;
+using Entities;
+using FoodOrderingSite.BLL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Configuration;
-using Entities;
 
 namespace FoodOrderingSite.PL.Model
 {
@@ -22,21 +20,56 @@ namespace FoodOrderingSite.PL.Model
 
         public int SentOrder(Order order)
         {
-            return orderBL.Add(order);
+            try
+            {
+                return orderBL.Add(order);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return 0;
+            }
+
         }
 
         public IEnumerable<Order> GetAll()
         {
-            return orderBL.GetAll();
+
+            try
+            {
+                return orderBL.GetAll();
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return null;
+            }
         }
 
         public IEnumerable<Order> GetByStatus(Status status)
         {
-            return orderBL.GetByStatus(status);
+
+            try
+            {
+                return orderBL.GetByStatus(status);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return null;
+            }
         }
         public bool ChangeOrderStatusById(int id, Status status)
         {
-            return orderBL.ChangeStatusById(id, status);
+            try
+            {
+                return orderBL.ChangeStatusById(id, status);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return false;
+            }
         }
     }
 }

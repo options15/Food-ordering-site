@@ -1,11 +1,7 @@
 ﻿using Entities;
 using FoodOrderingSite.DAL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodOrderingSite.DAL
 {
@@ -75,12 +71,13 @@ namespace FoodOrderingSite.DAL
                 var products = new List<Product>();
                 while (result.Read())
                 {
-                    products.Add(new Product { 
-                    Id = (int)result["Id"],
-                    Name = result["Name"] as string,
-                    Сomposition = result["Сomposition"] as string,
-                    Image = result["ImageURL"] as string,
-                    Price = (int)result["Price"]
+                    products.Add(new Product
+                    {
+                        Id = (int)result["Id"],
+                        Name = result["Name"] as string,
+                        Сomposition = result["Сomposition"] as string,
+                        Image = result["ImageURL"] as string,
+                        Price = (int)result["Price"]
                     });
                 }
                 return products.ToArray();

@@ -1,10 +1,8 @@
-﻿using FoodOrderingSite.BLL.Interfaces;
+﻿using Configuration;
+using Entities;
+using FoodOrderingSite.BLL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Configuration;
-using Entities;
 
 namespace FoodOrderingSite.PL.Model
 {
@@ -23,7 +21,7 @@ namespace FoodOrderingSite.PL.Model
         public User Authorization(string login, string password)
         {
             var user = userBL.GetByLogin(login);
-            if(user.Password == password)
+            if (user.Password == password)
             {
                 return user;
             }
@@ -41,7 +39,7 @@ namespace FoodOrderingSite.PL.Model
             {
                 return userBL.GetById(id);
             }
-            catch(Exception e) 
+            catch (Exception e)
             {
                 Logger.Log.Error(e.StackTrace);
                 return null;
@@ -97,7 +95,7 @@ namespace FoodOrderingSite.PL.Model
                 Logger.Log.Error(e.StackTrace);
                 return false;
             }
-}
+        }
 
         public bool DeleteProductFromBasket(int userId, int productId)
         {
@@ -112,6 +110,6 @@ namespace FoodOrderingSite.PL.Model
             }
         }
 
-        
+
     }
 }
