@@ -100,6 +100,7 @@
     <Content Include="Css\Index.css" />
     <Content Include="Css\Login.css" />
     <Content Include="Css\Main.css" />
+    <Content Include="DB.sql" />
     <Content Include="MyScripts\Main.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
