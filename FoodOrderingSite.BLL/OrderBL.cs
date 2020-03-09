@@ -23,10 +23,6 @@ namespace FoodOrderingSite.BLL
             return orderDAO.Add(order);
         }
 
-        public bool DeleteById(int id)
-        {
-            return orderDAO.DeleteById(id);
-        }
 
         public IEnumerable<Order> GetAll()
         {
@@ -38,10 +34,6 @@ namespace FoodOrderingSite.BLL
             return orderDAO.GetByStatus(status);
         }
 
-        public bool UpdateById(int id)
-        {
-            return orderDAO.UpdateById(id);
-        }
 
         public IEnumerable<Order> GetAllByUserId(int userId)
         {

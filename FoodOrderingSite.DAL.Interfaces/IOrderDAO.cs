@@ -10,8 +10,6 @@ namespace FoodOrderingSite.DAL.Interfaces
     public interface IOrderDAO
     {
         int Add(Order order);
-        bool DeleteById(int id);
-        bool UpdateById(int id);
         IEnumerable<Order> GetAll();
         IEnumerable<Order> GetAllByUserId(int userId);
         IEnumerable<Order> GetByStatus(Status status);

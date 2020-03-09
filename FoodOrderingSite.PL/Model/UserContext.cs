@@ -37,31 +37,79 @@ namespace FoodOrderingSite.PL.Model
 
         public User GetUserById(int id)
         {
-            return userBL.GetById(id);
+            try
+            {
+                return userBL.GetById(id);
+            }
+            catch(Exception e) 
+            {
+                Logger.Log.Error(e.StackTrace);
+                return null;
+            }
         }
 
         public bool Registration(int id, User user)
         {
-            return userBL.Registration(id, user);
+            try
+            {
+                return userBL.Registration(id, user);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return false;
+            }
         }
 
         public IEnumerable<Order> GetUserOrdersById(int userId)
         {
-            return new List<Order>();
+            try
+            {
+                return new List<Order>();
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return null;
+            }
         }
 
         public IEnumerable<Product> Basket(int id)
         {
-            return userBL.GetBasketById(id);
+            try
+            {
+                return userBL.GetBasketById(id);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return null;
+            }
         }
         public bool AddProductToBasketById(int userId, int productId)
         {
-            return userBL.AddProductToBasketById(userId, productId);
-        }
+            try
+            {
+                return userBL.AddProductToBasketById(userId, productId);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return false;
+            }
+}
 
         public bool DeleteProductFromBasket(int userId, int productId)
         {
-            return userBL.DeleteProductFromBasketById(userId, productId);
+            try
+            {
+                return userBL.DeleteProductFromBasketById(userId, productId);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.StackTrace);
+                return false;
+            }
         }
 
         

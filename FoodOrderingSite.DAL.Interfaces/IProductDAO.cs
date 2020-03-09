@@ -10,7 +10,6 @@ namespace FoodOrderingSite.DAL.Interfaces
     public interface IProductDAO
     {
         bool Add(Product product);
-        bool DeleteById(int id);
         bool UpdateById(int id, Product product);
         IEnumerable<Product> GetAll();
         IEnumerable<Product> GetByCategory(Category category);

@@ -1,9 +1,11 @@
 ﻿@using FoodOrderingSite.PL.Model
+@using FoodOrderingSite.PL
 @{
     Layout = "Layout/_MainLayout.cshtml";
 }
 
 @{ 
+    Logger.InitLogger();
     var products = ProductContext.GetInstance.Products();
 }
 

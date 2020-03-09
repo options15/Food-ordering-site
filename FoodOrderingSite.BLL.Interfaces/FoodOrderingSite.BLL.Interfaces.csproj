@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRoleBL.cs" />
     <Compile Include="IProductBL.cs" />
     <Compile Include="IUserBL.cs" />
     <Compile Include="IOrderBL.cs" />

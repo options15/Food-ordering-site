@@ -62,11 +62,6 @@ namespace FoodOrderingSite.DAL
             }
         }
 
-        public bool DeleteById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Product> GetAll()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

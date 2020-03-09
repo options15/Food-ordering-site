@@ -44,7 +44,6 @@
     <Compile Include="IUserDAO.cs" />
     <Compile Include="IOrderDAO.cs" />
     <Compile Include="IProductDAO.cs" />
-    <Compile Include="IRoleDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -79,11 +79,6 @@ namespace FoodOrderingSite.DAL
             return true;
         }
 
-        public bool DeleteById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Product> GetById(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -229,11 +224,6 @@ namespace FoodOrderingSite.DAL
                 }
                 return roles;
             }
-        }
-
-        public bool UpdateById(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public bool ChangeStatusById(int id, Status status)
